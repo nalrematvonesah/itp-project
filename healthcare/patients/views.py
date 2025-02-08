@@ -4,7 +4,9 @@ from rest_framework import status
 from django.shortcuts import get_object_or_404
 from .models import Patient, MedicalProfessional, Hospital
 from .serializers import PatientSerializer, MedicalProfessionalSerializer, HospitalSerializer
-
+from rest_framework.parsers import JSONParser
+from drf_yasg.utils import swagger_auto_schema
+from drf_yasg import openapi
 
 class PatientListCreateAPIView(APIView):
     def get(self, request):
@@ -12,6 +14,10 @@ class PatientListCreateAPIView(APIView):
         serializer = PatientSerializer(patients, many=True)
         return Response(serializer.data)
 
+    @swagger_auto_schema(
+        request_body=HospitalSerializer,  
+        responses={201: HospitalSerializer}
+    )
     def post(self, request):
         serializer = PatientSerializer(data=request.data)
         if serializer.is_valid():
@@ -25,6 +31,10 @@ class PatientDetailAPIView(APIView):
         serializer = PatientSerializer(patient)
         return Response(serializer.data)
 
+    @swagger_auto_schema(
+        request_body=HospitalSerializer,  
+        responses={201: HospitalSerializer}
+    )
     def put(self, request, pk):
         patient = get_object_or_404(Patient, pk=pk)
         serializer = PatientSerializer(patient, data=request.data)
@@ -32,7 +42,6 @@ class PatientDetailAPIView(APIView):
             serializer.save()
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
     def delete(self, request, pk):
         patient = get_object_or_404(Patient, pk=pk)
         patient.delete()
@@ -46,6 +55,10 @@ class MedicalProfessionalListCreateAPIView(APIView):
         serializer = MedicalProfessionalSerializer(professionals, many=True)
         return Response(serializer.data)
 
+    @swagger_auto_schema(
+        request_body=HospitalSerializer,  
+        responses={201: HospitalSerializer}
+    )
     def post(self, request):
         serializer = MedicalProfessionalSerializer(data=request.data)
         if serializer.is_valid():
@@ -60,6 +73,10 @@ class MedicalProfessionalDetailAPIView(APIView):
         serializer = MedicalProfessionalSerializer(professional)
         return Response(serializer.data)
 
+    @swagger_auto_schema(
+        request_body=HospitalSerializer,  
+        responses={201: HospitalSerializer}
+    )
     def put(self, request, pk):
         professional = get_object_or_404(MedicalProfessional, pk=pk)
         serializer = MedicalProfessionalSerializer(professional, data=request.data)
@@ -67,6 +84,7 @@ class MedicalProfessionalDetailAPIView(APIView):
             serializer.save()
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
 
     def delete(self, request, pk):
         professional = get_object_or_404(MedicalProfessional, pk=pk)
@@ -76,11 +94,16 @@ class MedicalProfessionalDetailAPIView(APIView):
 
 
 class HospitalListCreateAPIView(APIView):
+
     def get(self, request):
         hospitals = Hospital.objects.all()
         serializer = HospitalSerializer(hospitals, many=True)
         return Response(serializer.data)
 
+    @swagger_auto_schema(
+        request_body=HospitalSerializer,  
+        responses={201: HospitalSerializer}
+    )
     def post(self, request):
         serializer = HospitalSerializer(data=request.data)
         if serializer.is_valid():
@@ -94,7 +117,11 @@ class HospitalDetailAPIView(APIView):
         hospital = get_object_or_404(Hospital, pk=pk)
         serializer = HospitalSerializer(hospital)
         return Response(serializer.data)
-
+    
+    @swagger_auto_schema(
+        request_body=HospitalSerializer,  
+        responses={201: HospitalSerializer}
+    )
     def put(self, request, pk):
         hospital = get_object_or_404(Hospital, pk=pk)
         serializer = HospitalSerializer(hospital, data=request.data)
@@ -102,6 +129,7 @@ class HospitalDetailAPIView(APIView):
             serializer.save()
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
 
     def delete(self, request, pk):
         hospital = get_object_or_404(Hospital, pk=pk)
