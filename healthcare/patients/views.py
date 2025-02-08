@@ -15,8 +15,8 @@ class PatientListCreateAPIView(APIView):
         return Response(serializer.data)
 
     @swagger_auto_schema(
-        request_body=HospitalSerializer,  
-        responses={201: HospitalSerializer}
+        request_body=PatientSerializer,  
+        responses={201: PatientSerializer}
     )
     def post(self, request):
         serializer = PatientSerializer(data=request.data)
@@ -32,8 +32,8 @@ class PatientDetailAPIView(APIView):
         return Response(serializer.data)
 
     @swagger_auto_schema(
-        request_body=HospitalSerializer,  
-        responses={201: HospitalSerializer}
+        request_body=PatientSerializer,  
+        responses={201: PatientSerializer}
     )
     def put(self, request, pk):
         patient = get_object_or_404(Patient, pk=pk)
@@ -56,8 +56,8 @@ class MedicalProfessionalListCreateAPIView(APIView):
         return Response(serializer.data)
 
     @swagger_auto_schema(
-        request_body=HospitalSerializer,  
-        responses={201: HospitalSerializer}
+        request_body=MedicalProfessionalSerializer,  
+        responses={201: MedicalProfessionalSerializer}
     )
     def post(self, request):
         serializer = MedicalProfessionalSerializer(data=request.data)
@@ -74,8 +74,8 @@ class MedicalProfessionalDetailAPIView(APIView):
         return Response(serializer.data)
 
     @swagger_auto_schema(
-        request_body=HospitalSerializer,  
-        responses={201: HospitalSerializer}
+        request_body=MedicalProfessionalSerializer,  
+        responses={201: MedicalProfessionalSerializer}
     )
     def put(self, request, pk):
         professional = get_object_or_404(MedicalProfessional, pk=pk)
