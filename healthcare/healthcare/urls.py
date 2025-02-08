@@ -8,7 +8,7 @@ schema_view = get_schema_view(
     openapi.Info(
         title="Healthcare API",
         default_version="v1",
-        description="API for managing patients, hospitals, and medical professionals",
+        description="API documentation for managing patients, hospitals, and medical professionals",
     ),
     public=True,
     permission_classes=(permissions.AllowAny,),
