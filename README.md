@@ -1,12 +1,42 @@
 # itp-project
 Healthcare Management System
 
-List Patients → http://127.0.0.1:8000/api/patients/
+Patient Endpoints:
 
-Get Single Patient → http://127.0.0.1:8000/api/patients/{id}/
+GET	/api/patients/	Get all patients
 
-Create Patient (POST) → http://127.0.0.1:8000/api/patients/
+POST	/api/patients/	Create a new patient
 
-Update Patient (PUT) → http://127.0.0.1:8000/api/patients/{id}/
+GET	/api/patients/{id}/	Get a single patient by ID
 
-Delete Patient (DELETE) → http://127.0.0.1:8000/api/patients/{id}/
+PUT	/api/patients/{id}/	Update an existing patient
+
+DELETE	/api/patients/{id}/	Delete a patient
+
+
+
+Medical Professional Endpoints:
+
+GET	/api/medical-professionals/	Get all medical professionals
+
+POST	/api/medical-professionals/	Create a new medical professional
+
+GET	/api/medical-professionals/{id}/	Get a single medical professional by ID
+
+PUT	/api/medical-professionals/{id}/	Update an existing medical professional
+
+DELETE	/api/medical-professionals/{id}/	Delete a medical professional
+
+
+
+Hospital Endpoints:
+
+GET	/api/hospitals/	Get all hospitals
+
+POST	/api/hospitals/	Create a new hospital
+
+GET	/api/hospitals/{id}/	Get a single hospital by ID
+
+PUT	/api/hospitals/{id}/	Update an existing hospital
+
+DELETE	/api/hospitals/{id}/	Delete a hospital
