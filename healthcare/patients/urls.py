@@ -1,8 +1,10 @@
 from django.urls import path
+from django.conf import settings
+from django.conf.urls.static import static
 from .views import (
     PatientListCreateAPIView, PatientDetailAPIView,
     MedicalProfessionalListCreateAPIView, MedicalProfessionalDetailAPIView,
-    HospitalListCreateAPIView, HospitalDetailAPIView
+    HospitalListCreateAPIView, HospitalDetailAPIView, csrf_token_view
 )
 
 urlpatterns = [
@@ -14,4 +16,8 @@ urlpatterns = [
 
     path('hospitals/', HospitalListCreateAPIView.as_view(), name='hospital-list'),
     path('hospitals/<int:pk>/', HospitalDetailAPIView.as_view(), name='hospital-detail'),
+
+    path('csrf-token/', csrf_token_view, name='csrf-token'),
 ]
+
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATICFILES_DIRS[0])

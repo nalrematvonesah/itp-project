@@ -7,7 +7,16 @@ from .serializers import PatientSerializer, MedicalProfessionalSerializer, Hospi
 from rest_framework.parsers import JSONParser
 from drf_yasg.utils import swagger_auto_schema
 from drf_yasg import openapi
+from django.views.decorators.csrf import csrf_exempt
+from django.utils.decorators import method_decorator
+from django.http import JsonResponse
+from django.middleware.csrf import get_token
 
+def csrf_token_view(request):
+    return JsonResponse({'csrfToken': get_token(request)})
+
+
+@method_decorator(csrf_exempt, name='dispatch')
 class PatientListCreateAPIView(APIView):
     def get(self, request):
         patients = Patient.objects.all()
@@ -19,10 +28,12 @@ class PatientListCreateAPIView(APIView):
         responses={201: PatientSerializer}
     )
     def post(self, request):
+        print("Received Data:", request.data)  # ✅ Debugging
         serializer = PatientSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
+        print("Errors:", serializer.errors)  # ✅ Debugging
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class PatientDetailAPIView(APIView):

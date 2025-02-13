@@ -8,7 +8,6 @@ class Patient(models.Model):
     gender = models.CharField(max_length=10, choices=[('Male', 'Male'), ('Female', 'Female')])
     contact_number = models.CharField(max_length=15)
     address = models.TextField()
-    illness = models.CharField(max_length=50)
     medical_history = models.TextField(blank=True, null=True)
 
     def __str__(self):
