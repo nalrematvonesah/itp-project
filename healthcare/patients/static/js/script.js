@@ -1,7 +1,7 @@
 const API_URL = "http://127.0.0.1:8000/api/patients/";
 const CSRF_URL = "http://127.0.0.1:8000/api/csrf-token/";
 
-// 1️⃣ Fetch CSRF Token
+
 async function getCSRFToken() {
     try {
         const response = await fetch(CSRF_URL, { credentials: "include" });
@@ -13,18 +13,17 @@ async function getCSRFToken() {
     }
 }
 
-// 2️⃣ Fetch Patients
-// Function to fetch and display patients
+
 async function fetchPatients() {
     try {
         const response = await fetch(API_URL);
-        const data = await response.json();  // ✅ Make sure data is defined
-        console.log("Fetched patients:", data);  // ✅ Debugging
+        const data = await response.json();  
+        console.log("Fetched patients:", data);  
 
         const patientList = document.getElementById("patientList");
-        patientList.innerHTML = "";  // ✅ Clear previous list
+        patientList.innerHTML = ""; 
 
-        data.forEach(patient => {  // ✅ Ensure "data" is defined before looping
+        data.forEach(patient => {  
             const li = document.createElement("li");
             li.innerHTML = `
                 ${patient.first_name} ${patient.last_name} (Age: ${patient.age})
@@ -38,11 +37,10 @@ async function fetchPatients() {
 }
 
 
-// 3️⃣ Add Patient
 document.getElementById("patientForm").addEventListener("submit", async function(event) {
     event.preventDefault();
 
-    const csrfToken = await getCSRFToken();  // ✅ Get CSRF token before request
+    const csrfToken = await getCSRFToken(); 
 
     const newPatient = {
         first_name: document.getElementById("first_name").value,
@@ -60,7 +58,7 @@ document.getElementById("patientForm").addEventListener("submit", async function
         method: "POST",
         headers: {
             "Content-Type": "application/json",
-            "X-CSRFToken": csrfToken  // ✅ Include CSRF token
+            "X-CSRFToken": csrfToken  
         },
         credentials: "include",
         body: JSON.stringify(newPatient)
@@ -73,35 +71,33 @@ document.getElementById("patientForm").addEventListener("submit", async function
     })
     .then(data => {
         console.log("Patient added:", data);
-        fetchPatients();  // ✅ Refresh patient list
+        fetchPatients(); 
     })
     .catch(error => console.error("Error adding patient:", error));
 });
 
 // Function to delete a patient
 async function deletePatient(patientId) {
-    console.log("Deleting patient:", patientId); // ✅ Debugging log
-
-    const csrfToken = await getCSRFToken();  // ✅ Fetch CSRF token before request
+    console.log("Deleting patient:", patientId); 
+    const csrfToken = await getCSRFToken();  
 
     fetch(`${API_URL}${patientId}/`, {
         method: "DELETE",
         headers: {
             "Content-Type": "application/json",
-            "X-CSRFToken": csrfToken  // ✅ Include CSRF token
+            "X-CSRFToken": csrfToken  
         },
         credentials: "include"
     })
     .then(response => {
         if (!response.ok) {
-            return response.text().then(text => Promise.reject(text));  // ✅ Fix error handling
+            return response.text().then(text => Promise.reject(text));  
         }
         console.log("Patient deleted:", patientId);
-        return fetchPatients();  // ✅ Refresh patient list
+        return fetchPatients();  
     })
     .catch(error => console.error("Error deleting patient:", error));
 }
 
 
-// 4️⃣ Fetch Patients When Page Loads
 fetchPatients();

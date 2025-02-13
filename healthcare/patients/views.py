@@ -28,12 +28,12 @@ class PatientListCreateAPIView(APIView):
         responses={201: PatientSerializer}
     )
     def post(self, request):
-        print("Received Data:", request.data)  # ✅ Debugging
+        print("Received Data:", request.data) 
         serializer = PatientSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
-        print("Errors:", serializer.errors)  # ✅ Debugging
+        print("Errors:", serializer.errors)  
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class PatientDetailAPIView(APIView):
