@@ -4,9 +4,7 @@ from rest_framework import status
 from django.shortcuts import get_object_or_404
 from .models import Patient, MedicalProfessional, Hospital
 from .serializers import PatientSerializer, MedicalProfessionalSerializer, HospitalSerializer
-from rest_framework.parsers import JSONParser
 from drf_yasg.utils import swagger_auto_schema
-from drf_yasg import openapi
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
 from django.http import JsonResponse
@@ -18,6 +16,7 @@ def csrf_token_view(request):
 
 @method_decorator(csrf_exempt, name='dispatch')
 class PatientListCreateAPIView(APIView):
+    queryset = MedicalProfessional.objects.all().select_related('hospital')
     def get(self, request):
         patients = Patient.objects.all()
         serializer = PatientSerializer(patients, many=True)
@@ -35,7 +34,8 @@ class PatientListCreateAPIView(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         print("Errors:", serializer.errors)  
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
+    
+@method_decorator(csrf_exempt, name='dispatch')
 class PatientDetailAPIView(APIView):
     def get(self, request, pk):
         patient = get_object_or_404(Patient, pk=pk)
@@ -59,7 +59,7 @@ class PatientDetailAPIView(APIView):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
-
+@method_decorator(csrf_exempt, name='dispatch')
 class MedicalProfessionalListCreateAPIView(APIView):
     def get(self, request):
         professionals = MedicalProfessional.objects.all()
@@ -77,7 +77,7 @@ class MedicalProfessionalListCreateAPIView(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-
+@method_decorator(csrf_exempt, name='dispatch')
 class MedicalProfessionalDetailAPIView(APIView):
     def get(self, request, pk):
         professional = get_object_or_404(MedicalProfessional, pk=pk)
@@ -103,9 +103,8 @@ class MedicalProfessionalDetailAPIView(APIView):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
-
+@method_decorator(csrf_exempt, name='dispatch')
 class HospitalListCreateAPIView(APIView):
-
     def get(self, request):
         hospitals = Hospital.objects.all()
         serializer = HospitalSerializer(hospitals, many=True)
@@ -122,7 +121,7 @@ class HospitalListCreateAPIView(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-
+@method_decorator(csrf_exempt, name='dispatch')
 class HospitalDetailAPIView(APIView):
     def get(self, request, pk):
         hospital = get_object_or_404(Hospital, pk=pk)

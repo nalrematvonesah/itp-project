@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Professionals</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <h1>Medical Professionals Management</h1>
+
+    <h2>Add a New Medical Professional</h2>
+    <form id="medicalProfessionalForm">
+        <input type="text" id="first_name" placeholder="First Name" required>
+        <input type="text" id="last_name" placeholder="Last Name" required>
+        <input type="text" id="specialization" placeholder="Specialization" required>
+        <input type="text" id="contact_number" placeholder="Contact Number" required>
+        <select id="hospital" required>
+            <option value="">Select Hospital</option>
+        </select>
+        <button type="submit">Add Professional</button>
+    </form>
+
+    <h2>Medical Professionals List</h2>
+    <ul id="medicalProfessionalList"></ul>
+
+    <script src="js/medical_professional.js"></script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital Management</title>
+    <script defer src="js/hospital.js"></script> 
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <h1>Hospital Management</h1>
+
+    <h2>Add a New Hospital</h2>
+    <form id="hospitalForm">
+        <input type="text" id="name" placeholder="Hospital Name" required>
+        <input type="text" id="location" placeholder="Location" required>
+        <input type="number" id="capacity" placeholder="Capacity" required>
+        <input type="text" id="contact_number" placeholder="Phone Number" required>
+        <button type="submit">Add Hospital</button>
+    </form>
+
+    <h2>Hospitals List</h2>
+    <ul id="hospitalList"></ul>
+</body>
+</html>
