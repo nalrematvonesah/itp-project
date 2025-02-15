@@ -1,7 +1,7 @@
 # itp-project
 Healthcare Management System
 
-Patient Endpoints:
+Patient Endpoints (API):
 
 GET	/api/patients/	Get all patients
 
@@ -15,7 +15,7 @@ DELETE	/api/patients/{id}/	Delete a patient
 
 
 
-Medical Professional Endpoints:
+Medical Professional Endpoints (API):
 
 GET	/api/medical-professionals/	Get all medical professionals
 
@@ -29,7 +29,7 @@ DELETE	/api/medical-professionals/{id}/	Delete a medical professional
 
 
 
-Hospital Endpoints:
+Hospital Endpoints (API):
 
 GET	/api/hospitals/	Get all hospitals
 
@@ -40,3 +40,12 @@ GET	/api/hospitals/{id}/	Get a single hospital by ID
 PUT	/api/hospitals/{id}/	Update an existing hospital
 
 DELETE	/api/hospitals/{id}/	Delete a hospital
+
+
+Frontend:
+
+Hospital:/static/hospital.html
+
+MedicalProfessional: /static/medical_professiona;.html
+
+Patient: /static/patients.html
