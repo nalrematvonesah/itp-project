@@ -1,27 +1,110 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Form Styling */
+form {
+    background: white;
+    padding: 20px;
+    max-width: 400px;
+    margin: 20px auto;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+form input, form select, form button {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+form button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+form button:hover {
+    background-color: #2980b9;
+}
+
+/* List Styling */
+ul {
+    list-style-type: none;
+    padding: 0;
+    max-width: 600px;
+    margin: 20px auto;
+}
+
+li {
+    background: white;
+    padding: 15px;
+    margin: 8px 0;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 18px;
+}
+
+li span {
+    flex-grow: 1;
+}
+
+/* Buttons */
 button {
-    font-size: 14px;  
-    padding: 5px 10px;
+    font-size: 14px;
+    padding: 8px 12px;
     border: none;
     cursor: pointer;
     border-radius: 4px;
     margin: 2px;
+    transition: all 0.2s ease-in-out;
 }
 
 .more-btn {
-    background-color: #3498db;
+    background-color: #2ecc71; /* Green */
     color: white;
+}
+
+.more-btn:hover {
+    background-color: #27ae60;
 }
 
 .edit-btn {
-    background-color: #2ecc71;
+    background-color: #f39c12; /* Orange */
     color: white;
 }
 
+.edit-btn:hover {
+    background-color: #e67e22;
+}
+
 .delete-btn {
-    background-color: #e74c3c; 
+    background-color: #e74c3c; /* Red */
     color: white;
 }
 
 .delete-btn:hover {
-    background-color: #c0392b; 
+    background-color: #c0392b;
+}
+
+/* Header */
+h1 {
+    color: #333;
+}
+
+h2 {
+    color: #666;
 }

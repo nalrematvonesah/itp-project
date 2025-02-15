@@ -21,7 +21,7 @@ async function fetchHospitals() {
         data.forEach(hospital => {
             const li = document.createElement("li");
             li.innerHTML = `
-                ${hospital.name} - ${hospital.location} - Capacity: ${hospital.capacity} - Phone: ${hospital.phone_number} 
+                ${hospital.name} - ${hospital.location} - Capacity: ${hospital.capacity} - Phone: ${hospital.contact_number} 
                 <button class="more-btn" onclick="showHospitalDetails(${hospital.id})">More</button>
                 <button class="edit-btn" onclick="editHospital(${hospital.id})">Edit</button>
                 <button class="delete-btn" onclick="deleteHospital(${hospital.id})">Delete</button>
