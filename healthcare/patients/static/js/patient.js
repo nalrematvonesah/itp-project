@@ -41,7 +41,7 @@ async function fetchPatients() {
 }
 
 async function addPatient(event) {
-    event.preventDefault(); // Prevent default form submission
+    event.preventDefault();
 
     const csrfToken = await getCSRFToken();
     if (!csrfToken) {
